@@ -3,8 +3,7 @@ $(document).ready(function() {
     if (savedLang) {
         changeLanguage(savedLang);
         $(`.lang-selector[data-lang="${savedLang}"]`).addClass('active');
-    }
-    else {
+    } else {
         changeLanguage('en');
         $(`.lang-selector[data-lang="en"]`).addClass('active');
     }
@@ -14,7 +13,7 @@ function changeLanguage(lang) {
     localStorage.setItem('selectedLanguage', lang);
 
     $.ajax({
-        url: '/get_translation/' + lang,
+        url: `/get_translation/${lang}`,
         method: 'GET',
         success: function(data) {
             const elementsToUpdate = {
@@ -37,21 +36,12 @@ function changeLanguage(lang) {
             dynamicIds.forEach(id => {
                 const baseId = `id${id}`;
                 const variations = ['name', 'desc'];
-                
-                variations.forEach(variation => {
-                    const elementId = `${baseId}-${variation}`;
-                    const titleId = `${baseId}-title`;
-                    const shortId = `${baseId}-desc-short`;
-                    const viewId = `${baseId}-view`;
-                    const dataKey = `${baseId}_${variation}`;
-                    const dataKeyTitle = `${baseId}_name`;
-                    const dataKeyShort = `${baseId}_desc_short`;
-                    const viewKey = `home_view`;
 
-                    $(`#${elementId}`).text(data[dataKey]);
-                    $(`#${titleId}`).text(data[dataKeyTitle]);
-                    $(`#${shortId}`).text(data[dataKeyShort]);
-                    $(`#${viewId}`).text(data[viewKey]);
+                variations.forEach(variation => {
+                    $(`#${baseId}-${variation}`).text(data[`${baseId}_${variation}`]);
+                    $(`#${baseId}-title`).text(data[`${baseId}_name`]);
+                    $(`#${baseId}-desc-short`).text(data[`${baseId}_desc_short`]);
+                    $(`#${baseId}-view`).text(data[`home_view`]);
                 });
             });
         },
@@ -64,6 +54,6 @@ function changeLanguage(lang) {
 $('.lang-selector').on('click', function() {
     $('.lang-selector').removeClass('active');
     $(this).addClass('active');
-    var lang = $(this).data('lang');
+    const lang = $(this).data('lang');
     changeLanguage(lang);
 });

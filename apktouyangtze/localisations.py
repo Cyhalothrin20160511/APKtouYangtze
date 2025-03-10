@@ -13,7 +13,6 @@
 #       14514 14537 14564 14634
 #       14647 14652 14710 14711
 #       14709 23806 14719 14731
-# No need to build a database for such a small project
 translations = {
     'en': {
         'general_title': 'ICH Encyclopedia of the Yangtze Delta',
