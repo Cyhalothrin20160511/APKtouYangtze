@@ -81,6 +81,39 @@ def get_article(article_id):
     article = {key: result[key] for key in result.keys()}
     return jsonify(article)
 
+proposed_changes = "proposed_changes.json"
+
+def load_proposed_changes():
+    try:
+        with open(proposed_changes, "r", encoding="utf-8") as file:
+            return json.load(file)
+    except (FileNotFoundError, json.JSONDecodeError):
+        return []
+    
+def save_proposed_changes(changes):
+    with open(proposed_changes, "w", encoding="utf-8") as file:
+        json.dump(changes, file, ensure_ascii=False, indent=4)
+
+@app.route('/api/propose-changes', methods=['POST'])
+def propose_changes():
+    try:
+        data = request.get_json()
+        if not data or "id" not in data or "content" not in data:
+            return jsonify({"error": "Oops"}), 400
+        
+        proposed_changes = load_proposed_changes()
+
+        proposed_changes.append({
+            "id": data["id"],
+            "content": data["content"]
+        })
+        
+        save_proposed_changes(proposed_changes)
+
+        return jsonify({"message": "Success"}), 201
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+    
 @app.route("/sitemap.xml")
 def sitemap():
     host = "https://apktouyangtze.schuletoushu.com"

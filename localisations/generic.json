@@ -12,7 +12,12 @@
         "about_webmaster": "About the Webmaster",
         "read_more_on": "Read more on",
         "image_source": "Image source:",
-        "text_source": "Original Chinese text source:"
+        "text_source": "Original Chinese text source:",
+        "propose_changes": "Propose Changes",
+        "cancel": "Cancel",
+        "submit": "Submit",
+        "propose_changes_placeholder": "Please provide details about the changes you would like to suggest. For example: \"Please replace this term with ..., as it is a more standardized expression,\" or \"I suggest revising sentence Y in paragraph X to improve readability and fluency.\"",
+        "propose_changes_success": "Your edit suggestion has been successfully submitted and will be reviewed by an administrator soon."
     },
     
     "gr": {
@@ -28,7 +33,12 @@
         "about_webmaster": "Σχετικά με τον Webmaster",
         "read_more_on": "Δείτε περισσότερα στην",
         "image_source": "Πηγή της εικόνας:",
-        "text_source": "Πηγή του κινέζικου πρωτοτύπου:"
+        "text_source": "Πηγή του κινέζικου πρωτοτύπου:",
+        "propose_changes": "Προτείνετε αλλαγές",
+        "cancel": "Ακύρωση",
+        "submit": "Υποβολή",
+        "propose_changes_placeholder": "Παρακαλώ περιγράψτε λεπτομερώς τις αλλαγές που θέλετε να προτείνετε. Για παράδειγμα: \"Παρακαλώ αντικαταστήστε αυτόν τον όρο με ..., καθώς είναι πιο τυποποιημένη έκφραση\" ή \"Προτείνω την αναθεώρηση της πρότασης Y στην παράγραφο X για τη βελτίωση της αναγνωσιμότητας και της ροής του κειμένου.\"",
+        "propose_changes_success": "Η πρότασή σας για αλλαγή υποβλήθηκε επιτυχώς και θα εξεταστεί σύντομα από έναν διαχειριστή."
     },
 
     "sc": {
@@ -44,7 +54,12 @@
         "about_webmaster": "关于站长",
         "read_more_on": "了解更多：",
         "image_source": "图片来源：",
-        "text_source": "中文原文来源："
+        "text_source": "中文原文来源：",
+        "propose_changes": "提议修改",
+        "cancel": "取消",
+        "submit": "提交",
+        "propose_changes_placeholder": "请详细描述您希望修改的内容。例如：“请将此专有名词改为...，因为这是更规范的表达方式”，或“建议修改第X段第Y句，以提升可读性和流畅度”。",
+        "propose_changes_success": "您的修改建议已成功提交，管理员将尽快审核处理。"
     },
 
     "ja": {
@@ -60,7 +75,12 @@
         "about_webmaster": "ウェブマスターについて",
         "read_more_on": "詳細を見る：",
         "image_source": "画像の出典：",
-        "text_source": "中国語原文の出典："
+        "text_source": "中国語原文の出典：",
+        "propose_changes": "変更を提案する",
+        "cancel": "キャンセル",
+        "submit": "提出する",
+        "propose_changes_placeholder": "変更したい内容を詳しく説明してください。例えば、「この用語を…に置き換えてください。こちらの表現の方がより標準的です。」や「可読性と流暢さを向上させるため、第 X 段落の第 Y 文を修正することを提案します。」など。",
+        "propose_changes_success": "あなたの修正提案が正常に送信され、管理者によって速やかに審査されます。"
     },
 
     "ru": {
@@ -76,6 +96,11 @@
         "about_webmaster": "О веб-мастере",
         "read_more_on": "Читать дальше на",
         "image_source": "Источник картинки:",
-        "text_source": "Источник китайского материала:"
+        "text_source": "Источник китайского материала:",
+        "propose_changes": "Предложить изменения",
+        "cancel": "Отмена",
+        "submit": "Отправить",
+        "propose_changes_placeholder": "Пожалуйста, подробно опишите изменения, которые вы хотите предложить. Например: \"Замените этот термин на ..., так как это более стандартизированное выражение\", или \"Я предлагаю пересмотреть предложение Y в абзаце X для улучшения читаемости и плавности текста.\"",
+        "propose_changes_success": "Ваше предложение об изменении успешно отправлено и будет вскоре рассмотрено администратором."
     }
 }
