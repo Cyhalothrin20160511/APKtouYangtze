@@ -13,8 +13,8 @@ const ArticlePage = () => {
   const { genericText } = useGenericText();
   const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
-  const [editMode, setEditMode] = useState(false);
-  const [proposedChanges, setproposedChanges] = useState("");
+  const [EditMode, setEditMode] = useState(false);
+  const [proposedChanges, setProposedChanges] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
  
   useEffect(() => {
@@ -136,7 +136,7 @@ const ArticlePage = () => {
                 <div className="modal-body">
                     <textarea
                     value={proposedChanges}
-                    onChange={(e) => setproposedChanges(e.target.value)}
+                    onChange={(e) => setProposedChanges(e.target.value)}
                     className="form-control"
                     style={{ minHeight: "300px", resize: "vertical" }}
                     placeholder={genericText.propose_changes_placeholder}

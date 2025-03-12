@@ -113,6 +113,44 @@ def propose_changes():
         return jsonify({"message": "Success"}), 201
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+
+proposed_articles = "proposed_articles.json"
+
+def load_proposed_articles():
+    try:
+        with open(proposed_articles, "r", encoding="utf-8") as file:
+            return json.load(file)
+    except (FileNotFoundError, json.JSONDecodeError):
+        return []
+    
+def save_proposed_articles(articles):
+    with open(proposed_articles, "w", encoding="utf-8") as file:
+        json.dump(articles, file, ensure_ascii=False, indent=4)
+
+@app.route('/api/propose-articles', methods=['POST'])
+def propose_articles():
+    try:
+        data = request.get_json()
+        if not data or "title" not in data or "desc" not in data or "language" not in data:
+            return jsonify({"error": "Oops"}), 400
+        
+        proposed_articles = load_proposed_articles()
+
+        proposed_articles.append({
+            "title": data["title"],
+            "desc": data["desc"],
+            "language": data["language"],
+            "shortDesc": data.get("shortDesc", ""),
+            "sourceUrl": data.get("sourceUrl", ""),
+            "imageUrl": data.get("imageUrl", ""),
+        })
+        
+        save_proposed_articles(proposed_articles)
+
+        return jsonify({"message": "Success"}), 201
+    except Exception as e:
+        print(f"Error: {e}")
+        return jsonify({"error": str(e)}), 500
     
 @app.route("/sitemap.xml")
 def sitemap():

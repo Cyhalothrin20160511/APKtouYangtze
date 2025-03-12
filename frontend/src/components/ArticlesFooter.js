@@ -1,8 +1,30 @@
 import { Link } from "react-router-dom";
 import { useGenericText } from "../context/GenericTextProvider";
+import CreateArticleForm from "../components/CreateArticleForm";
+import { useState } from "react";
 
 const ArticlesFooter = ({ page, hasNextPage }) => {
   const { genericText } = useGenericText();
+
+  const [successMessage, setSuccessMessage] = useState("");
+
+  const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+
+  const handleArticleSubmit = (newArticle) => {
+    fetch(`${API_BASE_URL}/propose-articles`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(newArticle),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setSuccessMessage(genericText.success_message);
+        setTimeout(() => setSuccessMessage(""), 5000);
+      })
+      .catch((error) => {
+        console.error("Error submiting article:", error);
+      });
+  };
 
   return (
     <footer className="text-body-secondary py-5">
@@ -20,6 +42,13 @@ const ArticlesFooter = ({ page, hasNextPage }) => {
             {genericText.next_page}
           </Link>
         )}
+      </div>
+      <div className="container text-center mt-5">
+        {successMessage && <div className="alert alert-success mt-3">{successMessage}</div>}
+        <span>{genericText.already_translated_article} </span>
+        <CreateArticleForm
+          onSubmit={handleArticleSubmit}
+        />
       </div>
     </footer>
   );
