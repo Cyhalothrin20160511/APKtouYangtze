@@ -1,35 +1,37 @@
 from apktouyangtze import app
-from flask import render_template, jsonify, request
-from apktouyangtze.localisations import translations
-from itertools import islice
-import time
+from flask import jsonify, request, Response, send_from_directory
 import os
 import sqlite3
+import json
+import datetime
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
 
-@app.context_processor
-def cache_buster():
-    return dict(cache_buster=int(time.time()))
+@app.route("/")
+def serve_react():
+    return send_from_directory(app.static_folder, "index.html")
 
-@app.route("/api/navbar")
-def get_navbar():
+@app.route("/<path:path>")
+def serve_static_files(path):
+    try:
+        return send_from_directory(app.static_folder, path)
+    except:
+        return send_from_directory(app.static_folder, "index.html")
+
+@app.route("/api/generic")
+def get_generic():
     lang = request.args.get("lang", "en")
-
-    db_path = os.path.join(script_dir, "navbar.db")
+    
+    db_path = os.path.join(script_dir, "generic.db")
     conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
-    cursor.execute("SELECT title, about, about_desc FROM navbar WHERE lang = ?", (lang,))
-    data = cursor.fetchone()
+    cursor.execute("SELECT data FROM generic WHERE lang = ?", (lang,))
+    row = cursor.fetchone()
     conn.close()
-
-    navbar_data = {
-        "navbar_title": data[0],
-        "navbar_about": data[1],
-        "navbar_about_desc": data[2]
-    }
-    return jsonify(navbar_data)
-
+    
+    generic_data = json.loads(row[0])
+    return jsonify(generic_data)
+    
 @app.route("/api/articles", methods=["GET"])
 def get_articles():
     page = int(request.args.get("page", 1))
@@ -40,78 +42,82 @@ def get_articles():
     db_path = os.path.join(script_dir, "articles.db")
     conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
+
     cursor.execute(
         "SELECT article_id, title, short_desc, image_url FROM articles WHERE lang = ? LIMIT ? OFFSET ?",
         (lang, page_size, offset),
     )
     rows = cursor.fetchall()
+
+    cursor.execute(
+        "SELECT COUNT(*) FROM articles WHERE lang = ?",
+        (lang,)
+    )
+    result = cursor.fetchone()
+    total_articles = result[0]
+    has_next_page = total_articles > page * page_size
+
     conn.close()
 
     articles = [
         {"article_id": row[0], "title": row[1], "short_desc": row[2], "image_url": row[3]} for row in rows
     ]
 
-    return jsonify(articles)
+    return jsonify({"articles": articles, "hasNextPage": has_next_page, "page": page})
 
 @app.route("/api/articles/<article_id>", methods=["GET"])
 def get_article(article_id):
     lang = request.args.get("lang", "en")
+
+    db_path = os.path.join(script_dir, "articles.db")
+    conn = sqlite3.connect(db_path)
+    conn.row_factory = sqlite3.Row
+    cursor = conn.cursor()
+
+    cursor.execute("SELECT * FROM articles WHERE article_id = ? AND lang = ?", (article_id, lang))
+    result = cursor.fetchone()
+    conn.close()
+    
+    article = {key: result[key] for key in result.keys()}
+    return jsonify(article)
+
+@app.route("/sitemap.xml")
+def sitemap():
+    host = "https://apktouyangtze.schuletoushu.com"
+    lastmod = datetime.datetime.now().strftime("%Y-%m-%d")
+
     db_path = os.path.join(script_dir, "articles.db")
     conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
-    cursor.execute("SELECT * FROM articles WHERE article_id = ? AND lang = ?", (article_id, lang))
-    row = cursor.fetchone()
+    
+    cursor.execute("SELECT article_id FROM articles")
+    articles = cursor.fetchall()
     conn.close()
 
-    if row:
-        article = {
-            "article_id": row[0],
-            "lang": row[1],
-            "title": row[2],
-            "desc": row[3],
-            "short_desc": row[4],
-            "image_url": row[5]
-        }
-        return jsonify(article)
-    else:
-        return jsonify({"error": "Article not found"}), 404
+    xml = ['<?xml version="1.0" encoding="UTF-8"?>']
+    xml.append('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">')
 
-articles = {
-    "12221": "https://t10.baidu.com/it/u=3045961866,3225824374&fm=173&s=DA28BE475D537FCE5A5657730300D07A&w=640&h=422&img.JPEG",
-    "12373": "https://img1.artron.net/auction/2019/art008169/d/art0081692874.jpg",
-    "12529": "https://5b0988e595225.cdn.sohucs.com/images/20180623/83cece98cdec4867896beb5dbf1e5b5c.jpeg",
-    "13943": "https://imgculture.gmw.cn/attachement/png/site2/20220218/f44d30758a5923794c2c43.png",
-    "13977": "https://y1.ifengimg.com/2253a9cab0a78f1f/2013/1031/rdn_5272069885c9a.jpg",
-    "14025": "https://imagepphcloud.thepaper.cn/pph/image/317/338/578.jpg",
-    "14031": "https://pic.quanjing.com/u2/55/QJ8114692965.jpg@%21350h",
-    "14064": "https://img2.baidu.com/it/u=2507090757,181547341&fm=253&fmt=auto&app=138&f=JPEG?w=750&h=500",
-    "14086": "https://img2.baidu.com/it/u=3400810000,1944534423&fm=253&fmt=auto&app=138&f=JPEG?w=591&h=442",
-    "14098": "https://5b0988e595225.cdn.sohucs.com/images/20200513/a14984eb9e8841f293fe228bfa32aae3.jpeg",
-    "14130": "https://img0.baidu.com/it/u=547653965,2593207619&fm=253&fmt=auto&app=138&f=JPEG?w=625&h=500",
-    "14135": "https://img0.baidu.com/it/u=2224930080,734682804&fm=253&fmt=auto&app=138&f=JPEG?w=640&h=425",
-    "14772": "https://img2.baidu.com/it/u=2047438460,3147748277&fm=253&fmt=auto&app=138&f=JPEG?w=753&h=500",
-    "14806": "https://news.online.sh.cn/news/gb/content/attachement/jpg/site1/20170210/IMG0025116ac73c43670946152.jpg",
-    "14836": "https://images.daojia.com/pic/ugc/bc29692fed6ab0196592448b4a64c182.png",
-    "14841": "https://image.thepaper.cn/www/image/4/191/330.jpg",
-}
+    xml.append(f"""
+        <url>
+            <loc>{host}/</loc>
+            <lastmod>{lastmod}</lastmod>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>
+        </url>
+    """)
 
-@app.route('/')
-@app.route("/home")
-def home_page():
-    page = request.args.get('page', 1, type=int)
-    start = (page - 1) * 9
-    end = start + 9
+    for article in articles:
+        article_id = article[0]
+        xml.append(f"""
+            <url>
+                <loc>{host}/article/{article_id}</loc>
+                <lastmod>{lastmod}</lastmod>
+                <changefreq>weekly</changefreq>
+                <priority>0.8</priority>
+            </url>
+        """)
 
-    paginated_arts = dict(islice(articles.items(), start, end))
-    return render_template('home.html', title_id="home-title", articles=paginated_arts, page=page)
-
-@app.route('/get_translation/<lang>')
-def get_translation(lang):
-    return jsonify(translations.get(lang, translations['en']))
-
-@app.route('/about/<id>')
-def about_page(id):
-    title_id = "id" + str(id) + "-title"
-    name_id = "id" + str(id) + "-name"
-    desc_id = "id" + str(id) + "-desc"
-    return render_template('article.html', title_id=title_id, name_id=name_id, desc_id=desc_id, img_url=articles[id])
+    xml.append("</urlset>")
+    
+    response = Response("\n".join(xml), mimetype="application/xml")
+    return response

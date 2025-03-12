@@ -1,0 +1,11 @@
+{
+  "files": {
+    "main.js": "/static/static/js/main.bc728cca.js",
+    "static/media/icon.png": "/static/static/media/icon.d6ea4fb06ef8cfcae529.png",
+    "index.html": "/static/index.html",
+    "main.bc728cca.js.map": "/static/static/js/main.bc728cca.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.bc728cca.js"
+  ]
+}
