@@ -12,6 +12,10 @@ const ArticlePage = () => {
   const [article, setArticle] = useState(null);
   const { genericText } = useGenericText();
   const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+
+  const [EditMode, setEditMode] = useState(false);
+  const [proposedChanges, setProposedChanges] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
  
   useEffect(() => {
     fetch(`${API_BASE_URL}/articles/${id}?lang=${language}`)
@@ -24,6 +28,24 @@ const ArticlePage = () => {
         setArticle(null);
       });
   }, [API_BASE_URL, id, language]);
+
+  const handleEditSubmit = () => {
+    const updatedData = { id, content: proposedChanges };
+    fetch(`${API_BASE_URL}/propose-changes`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(updatedData),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setSuccessMessage(genericText.propose_changes_success);
+        setEditMode(false);
+        setTimeout(() => setSuccessMessage(""), 5000);
+      })
+      .catch((error) => {
+        console.error("Error submitting edit:", error);
+      });
+  };
 
   // Conditional rendering ensures that the article is rendered only after the data is loaded, avoiding direct access to null attributes.
   if (article === null) {
@@ -88,14 +110,44 @@ const ArticlePage = () => {
                 </p>
             </div>
             <footer className="text-body-secondary">
-                <div className="container">
-                <p className="float-end mb-5">
-                    <Link to="/" className="btn btn-outline-secondary">
+                {successMessage && <div className="alert alert-success mt-3">{successMessage}</div>}
+                <div className="container d-flex justify-content-end align-items-center mb-3">
+                    <button
+                        onClick={() => setEditMode(true)}
+                        className="btn btn-outline-secondary m-2"
+                        data-bs-toggle="modal"
+                        data-bs-target="#editModal"
+                    >
+                        {genericText.propose_changes}
+                    </button>
+                    <Link to="/" className="btn btn-outline-secondary m-2">
                         {genericText.back_home}
                     </Link>
-                </p>
                 </div>
             </footer>
+        </div>
+        <div className="modal fade" id="editModal" tabIndex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+            <div className="modal-dialog modal-lg modal-dialog-centered"> 
+                <div className="modal-content">
+                <div className="modal-header">
+                    <h5 className="modal-title" id="editModalLabel">{genericText.propose_changes}</h5>
+                    <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div className="modal-body">
+                    <textarea
+                    value={proposedChanges}
+                    onChange={(e) => setProposedChanges(e.target.value)}
+                    className="form-control"
+                    style={{ minHeight: "300px", resize: "vertical" }}
+                    placeholder={genericText.propose_changes_placeholder}
+                    />
+                </div>
+                <div className="modal-footer d-flex justify-content-between">
+                    <button type="button" className="btn btn-outline-secondary" data-bs-dismiss="modal">{genericText.cancel}</button>
+                    <button type="button" className="btn btn-success" onClick={handleEditSubmit} data-bs-dismiss="modal">{genericText.submit}</button>
+                </div>
+                </div>
+            </div>
         </div>
     </>
   );

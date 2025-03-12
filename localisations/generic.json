@@ -12,7 +12,23 @@
         "about_webmaster": "About the Webmaster",
         "read_more_on": "Read more on",
         "image_source": "Image source:",
-        "text_source": "Original Chinese text source:"
+        "text_source": "Original Chinese text source:",
+        "propose_changes": "Propose Changes",
+        "cancel": "Cancel",
+        "submit": "Submit",
+        "propose_changes_placeholder": "Please provide details about the changes you would like to suggest. For example: \"Please replace this term with ..., as it is a more standardized expression,\" or \"I suggest revising sentence Y in paragraph X to improve readability and fluency.\"",
+        "propose_changes_success": "Your edit suggestion has been successfully submitted and will be reviewed by an administrator soon.",
+        "submit_article": "Submit Article",
+        "language_code": "Language Code (Required, en: English, gr: Ελληνικά, sc: 简体中文, ja: 日本語, ru: Русский)",
+        "text_title": "Article Title (Required)",
+        "text_desc": "Article Content (Required)",
+        "text_short_desc": "Short Description (Optional)",
+        "text_source_url": "Original Chinese Source URL (Optional)",
+        "text_image_url": "Recommended Image URL (Optional)",
+        "success_message": "Your article has been successfully submitted and will be reviewed by an administrator soon.",
+        "already_translated_article": "Already translated article?",
+        "click_here_to_submit": "Click here to submit",
+        "required_fields_missing": "Please fill in all required fields."
     },
     
     "gr": {
@@ -28,7 +44,23 @@
         "about_webmaster": "Σχετικά με τον Webmaster",
         "read_more_on": "Δείτε περισσότερα στην",
         "image_source": "Πηγή της εικόνας:",
-        "text_source": "Πηγή του κινέζικου πρωτοτύπου:"
+        "text_source": "Πηγή του κινέζικου πρωτοτύπου:",
+        "propose_changes": "Προτάσεις αλλαγών",
+        "cancel": "Ακύρωση",
+        "submit": "Υποβολή",
+        "propose_changes_placeholder": "Παρακαλώ περιγράψτε λεπτομερώς τις αλλαγές που θέλετε να προτείνετε. Για παράδειγμα: \"Παρακαλώ αντικαταστήστε αυτόν τον όρο με ..., καθώς είναι πιο τυποποιημένη έκφραση\" ή \"Προτείνω την αναθεώρηση της πρότασης Y στην παράγραφο X για τη βελτίωση της αναγνωσιμότητας και της ροής του κειμένου.\"",
+        "propose_changes_success": "Η πρότασή σας για αλλαγή υποβλήθηκε επιτυχώς και θα εξεταστεί σύντομα από έναν διαχειριστή.",
+        "submit_article": "Υποβολή άρθρου",
+        "language_code": "Κωδικός γλώσσας (Απαιτείται, en: English, gr: Ελληνικά, sc: 简体中文, ja: 日本語, ru: Русский)",
+        "text_title": "Τίτλος άρθρου (Απαιτείται)",
+        "text_desc": "Περιεχόμενο άρθρου (Απαιτείται)",
+        "text_short_desc": "Σύντομη περιγραφή (Προαιρετικό)",
+        "text_source_url": "Αρχικό κινεζικό URL πηγής (Προαιρετικό)",
+        "text_image_url": "Προτεινόμενο URL εικόνας (Προαιρετικό)",
+        "success_message": "Το άρθρο σας υποβλήθηκε επιτυχώς και θα εξεταστεί σύντομα από έναν διαχειριστή.",
+        "already_translated_article": "Έχετε ήδη μεταφρασμένο άρθρο;",
+        "click_here_to_submit": "Κάντε κλικ εδώ για υποβολή",
+        "required_fields_missing": "Παρακαλώ συμπληρώστε όλα τα απαιτούμενα πεδία."
     },
 
     "sc": {
@@ -44,7 +76,23 @@
         "about_webmaster": "关于站长",
         "read_more_on": "了解更多：",
         "image_source": "图片来源：",
-        "text_source": "中文原文来源："
+        "text_source": "中文原文来源：",
+        "propose_changes": "提议修改",
+        "cancel": "取消",
+        "submit": "提交",
+        "propose_changes_placeholder": "请详细描述您希望修改的内容。例如：“请将此专有名词改为...，因为这是更规范的表达方式”，或“建议修改第X段第Y句，以提升可读性和流畅度”。",
+        "propose_changes_success": "您的修改建议已成功提交，管理员将尽快审核处理。",
+        "submit_article": "提交文章（必填）",
+        "language_code": "语言代码（必填，en: English, gr: Ελληνικά, sc: 简体中文, ja: 日本語, ru: Русский）",
+        "text_title": "文章标题（必填）",
+        "text_desc": "文章正文（必填）",
+        "text_short_desc": "文章简短描述（可选）",
+        "text_source_url": "中文原文网址（可选）",
+        "text_image_url": "推荐图片网址（可选）",
+        "success_message": "您的文章已成功提交，管理员将尽快审核处理。",
+        "already_translated_article": "已有翻译完成的文章？",
+        "click_here_to_submit": "点击这里以提交",
+        "required_fields_missing": "请填写所有必填字段。"
     },
 
     "ja": {
@@ -60,7 +108,23 @@
         "about_webmaster": "ウェブマスターについて",
         "read_more_on": "詳細を見る：",
         "image_source": "画像の出典：",
-        "text_source": "中国語原文の出典："
+        "text_source": "中国語原文の出典：",
+        "propose_changes": "変更を提案する",
+        "cancel": "キャンセル",
+        "submit": "提出する",
+        "propose_changes_placeholder": "変更したい内容を詳しく説明してください。例えば、「この用語を…に置き換えてください。こちらの表現の方がより標準的です。」や「可読性と流暢さを向上させるため、第 X 段落の第 Y 文を修正することを提案します。」など。",
+        "propose_changes_success": "あなたの修正提案が正常に送信され、管理者が速やかに審査します。",
+        "submit_article": "記事を提出",
+        "language_code": "言語コード（必須，en: English, gr: Ελληνικά, sc: 简体中文, ja: 日本語, ru: Русский）",
+        "text_title": "記事のタイトル（必須）",
+        "text_desc": "記事の本文（必須）",
+        "text_short_desc": "記事の簡単な説明（任意）",
+        "text_source_url": "中国語の原文URL（任意）",
+        "text_image_url": "推奨画像のURL（任意）",
+        "success_message": "記事が正常に送信され、管理者が速やかに審査します。",
+        "already_translated_article": "すでに翻訳された記事ですか？",
+        "click_here_to_submit": "ここをクリックして提出",
+        "required_fields_missing": "必須項目をすべて入力してください。"
     },
 
     "ru": {
@@ -76,6 +140,22 @@
         "about_webmaster": "О веб-мастере",
         "read_more_on": "Читать дальше на",
         "image_source": "Источник картинки:",
-        "text_source": "Источник китайского материала:"
+        "text_source": "Источник китайского материала:",
+        "propose_changes": "Предложить изменения",
+        "cancel": "Отмена",
+        "submit": "Отправить",
+        "propose_changes_placeholder": "Пожалуйста, подробно опишите изменения, которые вы хотите предложить. Например: \"Замените этот термин на ..., так как это более стандартизированное выражение\", или \"Я предлагаю пересмотреть предложение Y в абзаце X для улучшения читаемости и плавности текста.\"",
+        "propose_changes_success": "Ваше предложение об изменении успешно отправлено и будет вскоре рассмотрено администратором.",
+        "submit_article": "Отправить статью",
+        "language_code": "Код языка (Обязательно, en: English, gr: Ελληνικά, sc: 简体中文, ja: 日本語, ru: Русский)",
+        "text_title": "Заголовок статьи (Обязательно)",
+        "text_desc": "Содержание статьи (Обязательно)",
+        "text_short_desc": "Краткое описание (необязательно)",
+        "text_source_url": "Оригинальный китайский URL (необязательно)",
+        "text_image_url": "Рекомендуемый URL изображения (необязательно)",
+        "success_message": "Ваша статья успешно отправлена и будет скоро рассмотрена администратором.",
+        "already_translated_article": "Уже переведенная статья?",
+        "click_here_to_submit": "Нажмите здесь, чтобы отправить",
+        "required_fields_missing": "Пожалуйста, заполните все обязательные поля."
     }
 }
