@@ -17,6 +17,8 @@ const Navbar = () => {
                 <p className="text-body-secondary">{genericText.about_encyclopedia_desc}</p>
                 <h4>{genericText.about_webmaster}</h4>
                 <p className="text-body-secondary">{genericText.read_more_on} <a href="https://schuletoushu.com/about-me" className="text-body-secondary" target="_blank">https://schuletoushu.com/about-me</a></p>
+                <h4>{genericText.github_url}</h4>
+                <p className="text-body-secondary"><a href="https://github.com/Cyhalothrin20160511/APKtouYangtze" className="text-body-secondary" target="_blank">https://github.com/Cyhalothrin20160511/APKtouYangtze</a></p>
               </div>
             </div>
           </div>

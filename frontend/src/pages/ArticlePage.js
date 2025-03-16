@@ -139,7 +139,7 @@ const ArticlePage = () => {
                     onChange={(e) => setProposedChanges(e.target.value)}
                     className="form-control"
                     style={{ minHeight: "300px", resize: "vertical" }}
-                    placeholder={genericText.propose_changes_placeholder}
+                    placeholder={genericText.propose_changes_example}
                     />
                 </div>
                 <div className="modal-footer d-flex justify-content-between">

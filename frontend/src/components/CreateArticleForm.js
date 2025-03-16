@@ -67,11 +67,12 @@ const CreateArticleForm = ({ onSubmit }) => {
                   </label>
                   <input
                     type="text"
-                    className="form-control form-control-lg"
+                    className="form-control"
                     id="language"
                     value={language}
                     onChange={(e) => setLanguage(e.target.value)}
                     required
+                    placeholder={genericText.language_example}
                   />
                 </div>
 
@@ -81,11 +82,12 @@ const CreateArticleForm = ({ onSubmit }) => {
                   </label>
                   <input
                     type="text"
-                    className="form-control form-control-lg"
+                    className="form-control"
                     id="title"
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
                     required
+                    placeholder={genericText.title_example}
                   />
                 </div>
 
@@ -100,6 +102,7 @@ const CreateArticleForm = ({ onSubmit }) => {
                     onChange={(e) => setDesc(e.target.value)}
                     rows="6"
                     required
+                    placeholder={genericText.desc_example}
                   />
                 </div>
 
@@ -113,7 +116,7 @@ const CreateArticleForm = ({ onSubmit }) => {
                     value={shortDesc}
                     onChange={(e) => setShortDesc(e.target.value)}
                     rows="2"
-                    placeholder={genericText.optional}
+                    placeholder={genericText.short_desc_example}
                   />
                 </div>
 
@@ -127,7 +130,7 @@ const CreateArticleForm = ({ onSubmit }) => {
                     id="sourceUrl"
                     value={sourceUrl}
                     onChange={(e) => setSourceUrl(e.target.value)}
-                    placeholder={genericText.optional}
+                    placeholder={genericText.source_url_example}
                   />
                 </div>
 
@@ -141,7 +144,7 @@ const CreateArticleForm = ({ onSubmit }) => {
                     id="imageUrl"
                     value={imageUrl}
                     onChange={(e) => setImageUrl(e.target.value)}
-                    placeholder={genericText.optional}
+                    placeholder={genericText.image_url_example}
                   />
                 </div>
               </form>
