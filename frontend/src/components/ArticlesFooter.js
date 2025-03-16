@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useGenericText } from "../context/GenericTextProvider";
 import CreateArticleForm from "../components/CreateArticleForm";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const ArticlesFooter = ({ page, hasNextPage }) => {
   const { genericText } = useGenericText();
@@ -10,6 +10,10 @@ const ArticlesFooter = ({ page, hasNextPage }) => {
 
   const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [page]);
+  
   const handleArticleSubmit = (newArticle) => {
     fetch(`${API_BASE_URL}/propose-articles`, {
       method: "POST",
