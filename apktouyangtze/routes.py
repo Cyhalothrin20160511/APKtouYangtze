@@ -5,29 +5,13 @@ import os
 import sqlite3
 import json
 import datetime
-from pathlib import Path
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
 static_dir = os.path.join(script_dir, "static")
 
-@app.get("/")
-async def serve_react():
-    return FileResponse(os.path.join(static_dir, "index.html"))
-
-@app.get("/{full_path:path}")
-async def catch_all_routes(full_path: str):
-    file_path = os.path.join(static_dir, full_path)
-
-    if os.path.exists(file_path):
-        return FileResponse(file_path)
-
-    return FileResponse(os.path.join(static_dir, "index.html"))
-
-script_dir = Path(__file__).parent
-
 @app.get("/api/generic")
 async def get_generic(lang: str = Query("en")):
-    db_path = script_dir / "generic.db"
+    db_path = os.path.join(script_dir, "generic.db")
     conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
 
@@ -45,7 +29,7 @@ async def get_articles(page: int = Query(1), lang: str = Query("en")):
     page_size = 9
     offset = (page - 1) * page_size
 
-    db_path = script_dir / "articles.db"
+    db_path = os.path.join(script_dir, "articles.db")
     conn = sqlite3.connect(db_path)
     conn.row_factory = sqlite3.Row
     cursor = conn.cursor()
@@ -71,9 +55,9 @@ async def get_articles(page: int = Query(1), lang: str = Query("en")):
 
     return {"articles": articles, "hasNextPage": total_articles > page * page_size, "page": page}
 
-@app.get("/api/articles/<article_id>")
+@app.get("/api/articles/{article_id}")
 async def get_article(article_id: str, lang: str = Query("en")):
-    db_path = script_dir / "articles.db"
+    db_path = os.path.join(script_dir, "articles.db")
     conn = sqlite3.connect(db_path)
     conn.row_factory = sqlite3.Row
     cursor = conn.cursor()
@@ -87,7 +71,7 @@ async def get_article(article_id: str, lang: str = Query("en")):
 
     return {key: result[key] for key in result.keys()}
 
-proposed_changes_file = script_dir / "proposed_changes.json"
+proposed_changes_file = os.path.join(script_dir, "proposed_changes.json")
 
 def load_proposed_changes():
     try:
@@ -111,7 +95,7 @@ async def propose_changes(data: dict):
     save_proposed_changes(proposed_changes)
     return JSONResponse(content={"message": "Success"}, status_code=201)
 
-proposed_articles_file = script_dir / "proposed_articles.json"
+proposed_articles_file = os.path.join(script_dir, "proposed_articles.json")
 
 def load_proposed_articles():
     try:
@@ -147,7 +131,7 @@ async def sitemap():
     host = "https://apktouyangtze.schuletoushu.com"
     lastmod = datetime.datetime.now().strftime("%Y-%m-%d")
 
-    db_path = script_dir / "articles.db"
+    db_path = os.path.join(script_dir, "articles.db")
     conn = sqlite3.connect(db_path)
     conn.row_factory = sqlite3.Row
     cursor = conn.cursor()
@@ -183,3 +167,7 @@ async def sitemap():
     
     response = Response("\n".join(xml), mimetype="application/xml")
     return response
+
+@app.get("/{full_path:path}")
+async def serve_react(full_path: str):
+    return FileResponse(os.path.join(static_dir, "index.html"))
