@@ -1,46 +1,53 @@
 from apktouyangtze import app
-from flask import jsonify, request, Response, send_from_directory
+from fastapi import Query, HTTPException
+from fastapi.responses import JSONResponse, Response, FileResponse
 import os
 import sqlite3
 import json
 import datetime
+from pathlib import Path
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
+static_dir = os.path.join(script_dir, "static")
 
-@app.route("/")
-def serve_react():
-    return send_from_directory(app.static_folder, "index.html")
+@app.get("/")
+async def serve_react():
+    return FileResponse(os.path.join(static_dir, "index.html"))
 
-@app.route("/<path:path>")
-def serve_static_files(path):
-    try:
-        return send_from_directory(app.static_folder, path)
-    except:
-        return send_from_directory(app.static_folder, "index.html")
+@app.get("/{full_path:path}")
+async def catch_all_routes(full_path: str):
+    file_path = os.path.join(static_dir, full_path)
 
-@app.route("/api/generic")
-def get_generic():
-    lang = request.args.get("lang", "en")
-    
-    db_path = os.path.join(script_dir, "generic.db")
+    if os.path.exists(file_path):
+        return FileResponse(file_path)
+
+    return FileResponse(os.path.join(static_dir, "index.html"))
+
+script_dir = Path(__file__).parent
+
+@app.get("/api/generic")
+async def get_generic(lang: str = Query("en")):
+    db_path = script_dir / "generic.db"
     conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
+
     cursor.execute("SELECT data FROM generic WHERE lang = ?", (lang,))
     row = cursor.fetchone()
     conn.close()
     
-    generic_data = json.loads(row[0])
-    return jsonify(generic_data)
+    if not row:
+        raise HTTPException(status_code=404, detail="Data not found")
+
+    return json.loads(row[0])
     
-@app.route("/api/articles", methods=["GET"])
-def get_articles():
-    page = int(request.args.get("page", 1))
-    lang = request.args.get("lang", "en")
+@app.get("/api/articles")
+async def get_articles(page: int = Query(1), lang: str = Query("en")):
     page_size = 9
     offset = (page - 1) * page_size
 
-    db_path = os.path.join(script_dir, "articles.db")
+    db_path = script_dir / "articles.db"
     conn = sqlite3.connect(db_path)
+    conn.row_factory = sqlite3.Row
     cursor = conn.cursor()
 
     cursor.execute(
@@ -53,23 +60,20 @@ def get_articles():
         "SELECT COUNT(*) FROM articles WHERE lang = ?",
         (lang,)
     )
-    result = cursor.fetchone()
-    total_articles = result[0]
-    has_next_page = total_articles > page * page_size
+    total_articles = cursor.fetchone()[0]
 
     conn.close()
 
     articles = [
-        {"article_id": row[0], "title": row[1], "short_desc": row[2], "image_url": row[3]} for row in rows
+        {"article_id": row[0], "title": row[1], "short_desc": row[2], "image_url": row[3]}
+        for row in rows
     ]
 
-    return jsonify({"articles": articles, "hasNextPage": has_next_page, "page": page})
+    return {"articles": articles, "hasNextPage": total_articles > page * page_size, "page": page}
 
-@app.route("/api/articles/<article_id>", methods=["GET"])
-def get_article(article_id):
-    lang = request.args.get("lang", "en")
-
-    db_path = os.path.join(script_dir, "articles.db")
+@app.get("/api/articles/<article_id>")
+async def get_article(article_id: str, lang: str = Query("en")):
+    db_path = script_dir / "articles.db"
     conn = sqlite3.connect(db_path)
     conn.row_factory = sqlite3.Row
     cursor = conn.cursor()
@@ -77,88 +81,75 @@ def get_article(article_id):
     cursor.execute("SELECT * FROM articles WHERE article_id = ? AND lang = ?", (article_id, lang))
     result = cursor.fetchone()
     conn.close()
-    
-    article = {key: result[key] for key in result.keys()}
-    return jsonify(article)
 
-proposed_changes = "proposed_changes.json"
+    if not result:
+        raise HTTPException(status_code=404, detail="Article not found")
+
+    return {key: result[key] for key in result.keys()}
+
+proposed_changes_file = script_dir / "proposed_changes.json"
 
 def load_proposed_changes():
     try:
-        with open(proposed_changes, "r", encoding="utf-8") as file:
+        with open(proposed_changes_file, "r", encoding="utf-8") as file:
             return json.load(file)
     except (FileNotFoundError, json.JSONDecodeError):
         return []
     
 def save_proposed_changes(changes):
-    with open(proposed_changes, "w", encoding="utf-8") as file:
+    with open(proposed_changes_file, "w", encoding="utf-8") as file:
         json.dump(changes, file, ensure_ascii=False, indent=4)
 
-@app.route('/api/propose-changes', methods=['POST'])
-def propose_changes():
-    try:
-        data = request.get_json()
-        if not data or "id" not in data or "content" not in data:
-            return jsonify({"error": "Oops"}), 400
-        
-        proposed_changes = load_proposed_changes()
+@app.post('/api/propose-changes')
+async def propose_changes(data: dict):
+    if "id" not in data or "content" not in data:
+        raise HTTPException(status_code=400, detail="Invalid data")
 
-        proposed_changes.append({
-            "id": data["id"],
-            "content": data["content"]
-        })
-        
-        save_proposed_changes(proposed_changes)
+    proposed_changes = load_proposed_changes()
+    proposed_changes.append({"id": data["id"], "content": data["content"]})
 
-        return jsonify({"message": "Success"}), 201
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
+    save_proposed_changes(proposed_changes)
+    return JSONResponse(content={"message": "Success"}, status_code=201)
 
-proposed_articles = "proposed_articles.json"
+proposed_articles_file = script_dir / "proposed_articles.json"
 
 def load_proposed_articles():
     try:
-        with open(proposed_articles, "r", encoding="utf-8") as file:
+        with open(proposed_articles_file, "r", encoding="utf-8") as file:
             return json.load(file)
     except (FileNotFoundError, json.JSONDecodeError):
         return []
     
 def save_proposed_articles(articles):
-    with open(proposed_articles, "w", encoding="utf-8") as file:
+    with open(proposed_articles_file, "w", encoding="utf-8") as file:
         json.dump(articles, file, ensure_ascii=False, indent=4)
 
-@app.route('/api/propose-articles', methods=['POST'])
-def propose_articles():
-    try:
-        data = request.get_json()
-        if not data or "title" not in data or "desc" not in data or "language" not in data:
-            return jsonify({"error": "Oops"}), 400
-        
-        proposed_articles = load_proposed_articles()
+@app.post('/api/propose-articles')
+async def propose_articles(data: dict):
+    if "title" not in data or "desc" not in data or "language" not in data:
+        raise HTTPException(status_code=400, detail="Invalid data")
 
-        proposed_articles.append({
-            "title": data["title"],
-            "desc": data["desc"],
-            "language": data["language"],
-            "shortDesc": data.get("shortDesc", ""),
-            "sourceUrl": data.get("sourceUrl", ""),
-            "imageUrl": data.get("imageUrl", ""),
-        })
-        
-        save_proposed_articles(proposed_articles)
+    proposed_articles = load_proposed_articles()
+    proposed_articles.append({
+        "title": data["title"],
+        "desc": data["desc"],
+        "language": data["language"],
+        "shortDesc": data.get("shortDesc", ""),
+        "sourceUrl": data.get("sourceUrl", ""),
+        "imageUrl": data.get("imageUrl", ""),
+    })
 
-        return jsonify({"message": "Success"}), 201
-    except Exception as e:
-        print(f"Error: {e}")
-        return jsonify({"error": str(e)}), 500
+    save_proposed_articles(proposed_articles)
+    return JSONResponse(content={"message": "Success"}, status_code=201)
     
-@app.route("/sitemap.xml")
-def sitemap():
+@app.get("/sitemap.xml")
+async def sitemap():
     host = "https://apktouyangtze.schuletoushu.com"
     lastmod = datetime.datetime.now().strftime("%Y-%m-%d")
 
-    db_path = os.path.join(script_dir, "articles.db")
+    db_path = script_dir / "articles.db"
     conn = sqlite3.connect(db_path)
+    conn.row_factory = sqlite3.Row
     cursor = conn.cursor()
     
     cursor.execute("SELECT article_id FROM articles")
@@ -181,7 +172,7 @@ def sitemap():
         article_id = article[0]
         xml.append(f"""
             <url>
-                <loc>{host}/article/{article_id}</loc>
+                <loc>{host}/{article_id}</loc>
                 <lastmod>{lastmod}</lastmod>
                 <changefreq>weekly</changefreq>
                 <priority>0.8</priority>
