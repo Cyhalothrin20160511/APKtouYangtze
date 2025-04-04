@@ -2,6 +2,7 @@ import React from "react";
 import { useGenericText } from "../context/GenericTextProvider";
 import { useLanguage } from "../hooks/useLanguage";
 import logo from "../assets/images/icon.png";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const { genericText } = useGenericText();
@@ -25,10 +26,10 @@ const Navbar = () => {
         </div>
         <div className="navbar navbar-dark bg-dark shadow-sm">
           <div className="container">
-            <a className="navbar-brand d-flex align-items-center" style={{ wordWrap: "break-word", overflowWrap: "break-word", whiteSpace: "normal", wordBreak: "break-all" }}>
+            <Link to="/" className="navbar-brand d-flex align-items-center" style={{ wordWrap: "break-word", overflowWrap: "break-word", whiteSpace: "normal", wordBreak: "break-all" }}>
               <img src={logo} alt="Logo" width="40" height="40" style={{ marginRight: "10px" }} />
               <strong>{genericText.title}</strong>
-            </a>
+            </Link>
             <div className="btn-group mx-auto m-3">
               <button
                 className={`btn btn-sm btn-outline-secondary ${language === "en" ? "active" : ""}`}

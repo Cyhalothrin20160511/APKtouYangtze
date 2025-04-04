@@ -1,4 +1,0 @@
-User-agent: *
-Disallow:
-
-Sitemap: https://apktouyangtze.schuletoushu.com/sitemap.xml

@@ -4,7 +4,7 @@
         "about_encyclopedia": "About the Encyclopedia",
         "about_encyclopedia_desc": "The Intangible Cultural Heritage Multilingual Encyclopedia of the Yangtze River Delta is a comprehensive platform dedicated to showcasing and preserving the rich and diverse intangible cultural heritage of the Yangtze River Delta. Spanning traditional crafts, folk customs, opera arts, and more, this platform is committed to safeguarding and passing down these invaluable cultural treasures. By offering content in multiple languages, including Chinese, English, Greek, and Japanese, the encyclopedia serves not only local communities but also a global audience, providing a unique window into China's traditional culture. It fosters cultural exchange and understanding while contributing to the sustainable preservation of intangible cultural heritage.",
         "read_more": "Read More",
-        "back_home": "Back to Home Page",
+        "back_previous": "Back to Previous Page",
         "page_1": "Page",
         "page_2": "",
         "previous_page": "Previous",
@@ -35,7 +35,13 @@
         "success_message": "Your article has been successfully submitted and will be reviewed by an administrator soon.",
         "already_translated_article": "Already translated article?",
         "click_here_to_submit": "Click here to submit",
-        "required_fields_missing": "Please fill in all required fields."
+        "required_fields_missing": "Please fill in all required fields.",
+        "home_welcome": "Welcome to the Yangtze River Delta Intangible Cultural Heritage Multilingual Encyclopedia!",
+        "play_video": "Play Video",
+        "video_desc": "Songjiang is the root of Shanghai, where numerous intangible cultural heritages, including Songjiang cloth, were born.\nThese have added a rich and colorful touch to the Yangtze River Delta's cultural heritage list.",
+        "home_desc": "The Yangtze River Delta Intangible Cultural Heritage Multilingual Encyclopedia aims to comprehensively showcase and promote the region's diverse intangible cultural heritage through a multilingual platform.\nClick the links below to start exploring these valuable cultural treasures!",
+        "default_articles": "National-Level\nIntangible Cultural Heritage of the Yangtze River Delta",
+        "special_articles": "Intangible Cultural Heritage of\nSongjiang District, Shanghai"
     },
     
     "gr": {
@@ -43,7 +49,7 @@
         "about_encyclopedia": "Σχετικά με αυτή την εγκυκλοπαίδεια",
         "about_encyclopedia_desc": "Η πολύγλωσση εγκυκλοπαίδεια της άυλης πολιτιστικής κληρονομιάς του Δέλτα Γιανγκτζέ στοχεύει στην ολοκληρωμένη παρουσίαση και διάδοση της πλούσιας και ποικιλόμορφης άυλης πολιτιστικής κληρονομιάς της περιοχής μέσω μιας πολυγλωσσικής πλατφόρμας. Η πλατφόρμα καλύπτει παραδοσιακές τέχνες, λαϊκές δραστηριότητες, όπερα και άλλες πολιτιστικές εκφράσεις, δεσμευόμενη να προστατεύει και να διαφυλάττει αυτούς τους πολύτιμους πολιτιστικούς θησαυρούς. Παρέχοντας περιεχόμενο σε κινεζικά, αγγλικά, ελληνικά, ιαπωνικά και άλλες γλώσσες, η Εγκυκλοπαίδεια Άυλης Πολιτιστικής Κληρονομιάς του Δέλτα του ποταμού Γιανγκτζέ εξυπηρετεί τόσο τους ντόπιους όσο και το διεθνές κοινό, προσφέροντας μια μοναδική ευκαιρία να εξερευνήσουν τον παραδοσιακό κινεζικό πολιτισμό. Ενισχύει τις πολιτιστικές ανταλλαγές, προάγει την κατανόηση και συμβάλλει στη βιώσιμη ανάπτυξη της άυλης πολιτιστικής κληρονομιάς.",
         "read_more": "Περισσότερα",
-        "back_home": "Επιστροφή στην αρχική σελίδα",
+        "back_previous": "Επιστροφή στην προηγούμενη σελίδα",
         "page_1": "Σελίδα",
         "page_2": "",
         "previous_page": "Προηγούμενη",
@@ -74,7 +80,13 @@
         "success_message": "Το άρθρο σας υποβλήθηκε επιτυχώς και θα εξεταστεί σύντομα από έναν διαχειριστή.",
         "already_translated_article": "Έχετε ήδη μεταφρασμένο άρθρο;",
         "click_here_to_submit": "Κάντε κλικ εδώ για υποβολή",
-        "required_fields_missing": "Παρακαλώ συμπληρώστε όλα τα απαιτούμενα πεδία."
+        "required_fields_missing": "Παρακαλώ συμπληρώστε όλα τα απαιτούμενα πεδία.",
+        "home_welcome": "Καλώς ήρθατε στην πολύγλωσση εγκυκλοπαίδεια της άυλης πολιτιστικής κληρονομιάς του Δέλτα του Γιανγκτσέ!",
+        "play_video": "Αναπαραγωγή βίντεο",
+        "video_desc": "Το Songjiang είναι η ρίζα της Σαγκάης, όπου γεννήθηκαν πολλές άυλες πολιτιστικές κληρονομιές, όπως το ύφασμα Songjiang.\nΑυτές έχουν προσθέσει ένα πλούσιο και πολύχρωμο στοιχείο στον κατάλογο της πολιτιστικής κληρονομιάς του Δέλτα του Γιανγκτσέ.",
+        "home_desc": "Η πολύγλωσση εγκυκλοπαίδεια της άυλης πολιτιστικής κληρονομιάς του Δέλτα του Γιανγκτσέ στοχεύει να παρουσιάσει και να προωθήσει την ποικιλόμορφη πολιτιστική κληρονομιά της περιοχής μέσω μιας πολύγλωσσης πλατφόρμας.\nΚάντε κλικ στους παρακάτω συνδέσμους για να αρχίσετε να εξερευνάτε αυτούς τους πολύτιμους πολιτιστικούς θησαυρούς!",
+        "default_articles": "Άυλη Πολιτιστική Κληρονομιά\nΕθνικού Επιπέδου στο Δέλτα του Γιανγκτσέ",
+        "special_articles": "Άυλη Πολιτιστική Κληρονομιά\nτης Περιφέρειας Songjiang, Σαγκάη"
     },
 
     "sc": {
@@ -82,7 +94,7 @@
         "about_encyclopedia": "关于百科",
         "about_encyclopedia_desc": "长三角地区非遗文化多语种百科旨在通过多语言平台，全面展示和传播长三角地区丰富多彩的非物质文化遗产。该平台涵盖传统手工艺、民俗活动、戏曲艺术等多领域内容，致力于保护和传承这些珍贵的文化瑰宝。通过提供中文、英文、希腊文、日文等多种语言版本，长三角非遗文化百科不仅服务于本地居民，也为全球用户打开了一扇了解中国传统文化的窗口，促进文化交流与理解，并推动非遗文化的可持续发展。",
         "read_more": "阅读更多",
-        "back_home": "回到首页",
+        "back_previous": "回到前页",
         "page_1": "第",
         "page_2": "页",
         "previous_page": "上一页",
@@ -113,7 +125,12 @@
         "success_message": "您的文章已成功提交，管理员将尽快审核处理。",
         "already_translated_article": "已有翻译完成的文章？",
         "click_here_to_submit": "点击这里以提交",
-        "required_fields_missing": "请填写所有必填字段。"
+        "home_welcome": "欢迎来到长三角地区非遗文化多语种百科！",
+        "play_video": "播放视频",
+        "video_desc": "松江乃上海之根，在这里诞生了以松江布为代表的众多非遗文化，\n它们为长三角非遗文化名单增添了浓墨重彩的一笔。",
+        "home_desc": "长三角地区非遗文化多语种百科旨在通过多语言平台，全面展示和传播长三角地区丰富多彩的非物质文化遗产。\n您可以通过点击下方的链接开始探索这些珍贵的文化瑰宝！",
+        "default_articles": "国家级长三角\n非物质文化遗产",
+        "special_articles": "上海市松江区\n非物质文化遗产"
     },
 
     "ja": {
@@ -121,7 +138,7 @@
         "about_encyclopedia": "について",
         "about_encyclopedia_desc": "長江デルタ地域無形文化遺産の多言語百科事典は、この地域の豊かで多彩な無形文化遺産を多言語プラットフォームを通じて包括的に紹介し、普及させることを目的としています。このプラットフォームでは、伝統工芸、民俗活動、オペラ芸術などの分野を取り上げ、これらの貴重な文化遺産の保護と継承に努めています。長江デルタ無形文化遺産百科事典は、中国語、英語、ギリシャ語、日本語などで提供されており、地元住民のみならず、世界中のユーザーに向けて中国の伝統文化を理解するための窓口を提供します。これにより、文化交流と相互理解を促進し、文化の持続可能な発展に寄与することを目指しています。",
         "read_more": "もっと見る",
-        "back_home": "ホームページ",
+        "back_previous": "前のページに戻る",
         "page_1": "ページ",
         "page_2": "",
         "previous_page": "前のページ",
@@ -152,7 +169,13 @@
         "success_message": "記事が正常に送信され、管理者が速やかに審査します。",
         "already_translated_article": "すでに翻訳された記事ですか？",
         "click_here_to_submit": "ここをクリックして提出",
-        "required_fields_missing": "必須項目をすべて入力してください。"
+        "required_fields_missing": "必須項目をすべて入力してください。",
+        "home_welcome": "長江デルタ無形文化遺産多言語百科事典へようこそ！",
+        "play_video": "動画を再生",
+        "video_desc": "松江は上海の発祥の地であり、松江布をはじめとする多くの無形文化遺産がここで生まれました。\nそれらは長江デルタの文化遺産リストに華やかな彩りを添えています。",
+        "home_desc": "長江デルタ無形文化遺産多言語百科事典は、多言語プラットフォームを通じて、この地域の豊かで多様な無形文化遺産を包括的に紹介し、広めることを目的としています。\n下のリンクをクリックして、これらの貴重な文化財を探索しましょう！",
+        "default_articles": "国家級長江デルタ\n無形文化遺産",
+        "special_articles": "上海市松江区の\n無形文化遺産"
     },
 
     "ru": {
@@ -160,7 +183,7 @@
         "about_encyclopedia": "Об этой энциклопедии",
         "about_encyclopedia_desc": "Многоязычная энциклопедия нематериального культурного наследия дельты реки Янцзы стремится к всестороннему представлению и распространению богатого и разнообразного нематериального культурного наследия региона через многоязычную платформу. Платформа охватывает традиционные искусства, народные занятия, оперу и другие культурные выражения, стремясь защищать и сохранять эти ценные культурные сокровища. Предоставляя контент на китайском, английском, греческом, японском и других языках, энциклопедия нематериального культурного наследия дельты реки Янцзы обслуживает как местных жителей, так и международную аудиторию, предлагая уникальную возможность исследовать традиционную китайскую культуру. Она усиливает культурные обмены, способствует пониманию и вносит вклад в устойчивое развитие нематериального культурного наследия.",
         "read_more": "Подробнее",
-        "back_home": "Вернуться на главную страницу",
+        "back_previous": "Вернуться на предыдущую страницу",
         "page_1": "Страница",
         "page_2": "",
         "previous_page": "Предыдущая страница",
@@ -191,6 +214,12 @@
         "success_message": "Ваша статья успешно отправлена и будет скоро рассмотрена администратором.",
         "already_translated_article": "Уже переведенная статья?",
         "click_here_to_submit": "Нажмите здесь, чтобы отправить",
-        "required_fields_missing": "Пожалуйста, заполните все обязательные поля."
+        "required_fields_missing": "Пожалуйста, заполните все обязательные поля.",
+        "home_welcome": "Добро пожаловать в многоязычную энциклопедию нематериального культурного наследия дельты Янцзы!",
+        "play_video": "Воспроизвести видео",
+        "video_desc": "Сунцзян — это истоки Шанхая, где зародилось множество нематериальных культурных наследий, включая ткань Сунцзян.\nОни добавили яркие и ценные элементы в список культурного наследия дельты Янцзы.",
+        "home_desc": "Многоязычная энциклопедия нематериального культурного наследия дельты Янцзы призвана всесторонне представить и продвигать богатое и разнообразное культурное наследие региона через многоязычную платформу.\nНажмите на ссылки ниже, чтобы начать исследовать эти ценные культурные сокровища!",
+        "default_articles": "Нематериальное культурное наследие\nнационального уровня дельты Янцзы",
+        "special_articles": "Нематериальное культурное наследие\nрайона Сунцзян, Шанхай"
     }
 }

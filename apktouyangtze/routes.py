@@ -70,6 +70,44 @@ async def get_article(article_id: str, lang: str = Query("en")):
         raise HTTPException(status_code=404, detail="Article not found")
 
     return {key: result[key] for key in result.keys()}
+    
+@app.get("/api/songjiang")
+async def get_songjiang(lang: str = Query("en")):
+    db_path = os.path.join(script_dir, "songjiang.db")
+    conn = sqlite3.connect(db_path)
+    conn.row_factory = sqlite3.Row
+    cursor = conn.cursor()
+
+    cursor.execute(
+        "SELECT article_id, title, short_desc, image_url FROM articles WHERE lang = ?",
+        (lang,)
+    )
+    rows = cursor.fetchall()
+
+    conn.close()
+
+    articles = [
+        {"article_id": row[0], "title": row[1], "short_desc": row[2], "image_url": row[3]}
+        for row in rows
+    ]
+
+    return {"articles": articles}
+
+@app.get("/api/songjiang/{article_id}")
+async def get_songjiang(article_id: str, lang: str = Query("en")):
+    db_path = os.path.join(script_dir, "songjiang.db")
+    conn = sqlite3.connect(db_path)
+    conn.row_factory = sqlite3.Row
+    cursor = conn.cursor()
+
+    cursor.execute("SELECT * FROM articles WHERE article_id = ? AND lang = ?", (article_id, lang))
+    result = cursor.fetchone()
+    conn.close()
+
+    if not result:
+        raise HTTPException(status_code=404, detail="Article not found")
+
+    return {key: result[key] for key in result.keys()}
 
 proposed_changes_file = os.path.join(script_dir, "proposed_changes.json")
 
@@ -125,48 +163,6 @@ async def propose_articles(data: dict):
 
     save_proposed_articles(proposed_articles)
     return JSONResponse(content={"message": "Success"}, status_code=201)
-    
-@app.get("/sitemap.xml")
-async def sitemap():
-    host = "https://apktouyangtze.schuletoushu.com"
-    lastmod = datetime.datetime.now().strftime("%Y-%m-%d")
-
-    db_path = os.path.join(script_dir, "articles.db")
-    conn = sqlite3.connect(db_path)
-    conn.row_factory = sqlite3.Row
-    cursor = conn.cursor()
-    
-    cursor.execute("SELECT article_id FROM articles")
-    articles = cursor.fetchall()
-    conn.close()
-
-    xml = ['<?xml version="1.0" encoding="UTF-8"?>']
-    xml.append('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">')
-
-    xml.append(f"""
-        <url>
-            <loc>{host}/</loc>
-            <lastmod>{lastmod}</lastmod>
-            <changefreq>daily</changefreq>
-            <priority>1.0</priority>
-        </url>
-    """)
-
-    for article in articles:
-        article_id = article[0]
-        xml.append(f"""
-            <url>
-                <loc>{host}/{article_id}</loc>
-                <lastmod>{lastmod}</lastmod>
-                <changefreq>weekly</changefreq>
-                <priority>0.8</priority>
-            </url>
-        """)
-
-    xml.append("</urlset>")
-    
-    response = Response("\n".join(xml), mimetype="application/xml")
-    return response
 
 @app.get("/{full_path:path}")
 async def serve_react(full_path: str):
