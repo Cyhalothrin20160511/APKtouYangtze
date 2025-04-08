@@ -4,7 +4,6 @@ from fastapi.responses import JSONResponse, Response, FileResponse
 import os
 import sqlite3
 import json
-import datetime
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
 static_dir = os.path.join(script_dir, "static")
@@ -163,7 +162,3 @@ async def propose_articles(data: dict):
 
     save_proposed_articles(proposed_articles)
     return JSONResponse(content={"message": "Success"}, status_code=201)
-
-@app.get("/{full_path:path}")
-async def serve_react(full_path: str):
-    return FileResponse(os.path.join(static_dir, "index.html"))

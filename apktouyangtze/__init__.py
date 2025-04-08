@@ -5,10 +5,9 @@ from starlette.middleware.trustedhost import TrustedHostMiddleware
 import os
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
-static_dir = os.path.join(script_dir, "static")
 
 app = FastAPI()
-app.mount("/static", StaticFiles(directory=static_dir), name="static")
+app.mount("/_next", StaticFiles(directory="./frontend-next/.next/static"), name="next")
 
 app.add_middleware(
     CORSMiddleware,
