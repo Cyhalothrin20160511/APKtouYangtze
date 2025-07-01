@@ -20,8 +20,6 @@ const Navbar = () => {
               <div className="col-sm-8 col-md-7 py-4">
                 <h4>{genericText.about_encyclopedia}</h4>
                 <p className="text-body-secondary">{genericText.about_encyclopedia_desc}</p>
-                <h4>{genericText.about_webmaster}</h4>
-                <p className="text-body-secondary">{genericText.read_more_on} <a href="https://schuletoushu.com/about-me" className="text-body-secondary" target="_blank">https://schuletoushu.com/about-me</a></p>
                 <h4>{genericText.github_url}</h4>
                 <p className="text-body-secondary"><a href="https://github.com/Cyhalothrin20160511/APKtouYangtze" className="text-body-secondary" target="_blank">https://github.com/Cyhalothrin20160511/APKtouYangtze</a></p>
               </div>

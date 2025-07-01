@@ -7,7 +7,6 @@ import os
 script_dir = os.path.dirname(os.path.abspath(__file__))
 
 app = FastAPI()
-app.mount("/_next", StaticFiles(directory="./frontend-next/.next/static"), name="next")
 
 app.add_middleware(
     CORSMiddleware,

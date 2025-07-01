@@ -145,14 +145,14 @@ const HomePage = () => {
                           <Link href="/china/articles" className={`btn btn-danger text-white m-3 flex-grow-1 d-flex align-items-center justify-content-center ${language === 'en' || language === 'gr' || language === 'ru' ? 'fs-4' : 'fs-3'}`}>
                             <div>
                               {(genericText?.default_articles || "").split("\n").map((paragraph: string, index: number) => (
-                                <p key={index} className="m-0" style={ language === 'ru' ? { wordWrap: "break-word", overflowWrap: "break-word", wordBreak: "break-all" } : {}}>{paragraph}</p>
+                                <p key={index} className="m-0">{paragraph}</p>
                               ))}
                             </div>
                           </Link>
                           <Link href="/songjiang/articles" className={`btn btn-primary text-white m-3 flex-grow-1 d-flex align-items-center justify-content-center ${language === 'en' || language === 'gr' || language === 'ru' ? 'fs-4' : 'fs-3'}`}>
                             <div>
                               {(genericText?.special_articles || "").split("\n").map((paragraph: string, index: number) => (
-                                <p key={index} className="m-0" style={ language === 'ru' ? { wordWrap: "break-word", overflowWrap: "break-word", wordBreak: "break-all" } : {}}>{paragraph}</p>
+                                <p key={index} className="m-0">{paragraph}</p>
                               ))}
                             </div>
                           </Link>
