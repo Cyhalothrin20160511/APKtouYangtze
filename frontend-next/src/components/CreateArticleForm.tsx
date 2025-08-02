@@ -1,7 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { useGenericText } from "@/context/GenericTextProvider";
+import { useParams } from "next/navigation";
+import allGeneric from "../app/locales/generic.json";
+
+type GenericText = Record<string, string>;
 
 type Article = {
   language: string;
@@ -17,7 +20,12 @@ type CreateArticleFormProps = {
 };
 
 const CreateArticleForm: React.FC<CreateArticleFormProps> = ({ onSubmit }) => {
-  const { genericText } = useGenericText();
+  const { lang } = useParams() as { lang: string };
+
+  const genericText: GenericText =
+    (allGeneric as Record<string, GenericText>)[lang] ||
+    (allGeneric as Record<string, GenericText>)['en'];
+
   const [language, setLanguage] = useState<string>("");
   const [title, setTitle] = useState<string>("");
   const [desc, setDesc] = useState<string>("");

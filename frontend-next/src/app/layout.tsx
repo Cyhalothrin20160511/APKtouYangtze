@@ -1,32 +1,25 @@
-import { GenericTextProvider } from "@/context/GenericTextProvider";
-import { LanguageProvider } from "@/context/LanguageProvider";
-import Head from "next/head";
-import "./css/bootstrap.min.css";
+import './css/bootstrap.min.css'
+import { ReactNode } from 'react'
 
 export const metadata = {
-  title: "ICH Encyclopedia of the Yangtze Delta",
-  description: "The Intangible Cultural Heritage Multilingual Encyclopedia of the Yangtze River Delta is a comprehensive platform dedicated to showcasing and preserving the rich and diverse intangible cultural heritage of the Yangtze River Delta.",
-  icons: {
-    icon: "/favicon.ico",
-  },
-};
+  icons: { icon: '/favicon.ico' },
+}
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
-      <Head>
+    <html>
+      <head>
         <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-      </Head>
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no"
+        />
+      </head>
       <body>
-        <LanguageProvider>
-          <GenericTextProvider>
-            {children}
-          </GenericTextProvider>
-        </LanguageProvider>
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js" />
-        <script src="/assets/js/bootstrap.bundle.min.js" />
+        {children}
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="/assets/js/bootstrap.bundle.min.js"></script>
       </body>
     </html>
-  );
+  )
 }

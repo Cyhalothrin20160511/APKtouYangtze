@@ -1,9 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import { useGenericText } from "@/context/GenericTextProvider";
+import { useParams } from "next/navigation";
+import allGeneric from "../app/locales/generic.json";
 import CreateArticleForm from "@/components/CreateArticleForm";
 import { useState } from "react";
+
+type GenericText = Record<string, string>
 
 type ArticlesFooterProps = {
   page: number;
@@ -20,7 +23,10 @@ const ArticlesFooter: React.FC<ArticlesFooterProps> = ({ page, hasNextPage }) =>
     imageUrl?: string;
   };
 
-  const { genericText } = useGenericText();
+  const { lang } = useParams() as { lang: string };
+  const genericText: GenericText =
+    (allGeneric as Record<string, GenericText>)[lang] ||
+    (allGeneric as Record<string, GenericText>)['en']
 
   const [successMessage, setSuccessMessage] = useState("");
 
@@ -46,7 +52,7 @@ const ArticlesFooter: React.FC<ArticlesFooterProps> = ({ page, hasNextPage }) =>
     <footer className="text-body-secondary py-5">
       <div className="container text-center">
         {page > 1 && (
-          <Link href={`?page=${page - 1}`} className="btn btn-sm btn-outline-secondary">
+          <Link href={`${page - 1}`} className="btn btn-sm btn-outline-secondary">
             {genericText.previous_page}
           </Link>
         )}
@@ -54,7 +60,7 @@ const ArticlesFooter: React.FC<ArticlesFooterProps> = ({ page, hasNextPage }) =>
         <span> {page} </span>
         <span>{genericText.page_2} </span>
         {hasNextPage && (
-          <Link href={`?page=${page + 1}`} className="btn btn-sm btn-outline-secondary">
+          <Link href={`${page + 1}`} className="btn btn-sm btn-outline-secondary">
             {genericText.next_page}
           </Link>
         )}
