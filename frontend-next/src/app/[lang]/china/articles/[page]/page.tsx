@@ -4,6 +4,7 @@ import allGeneric from '../../../../locales/generic.json'
 import allArticles from '../../../../locales/articles.json'
 import { notFound } from 'next/navigation'
 import ClientNavbar from '@/components/ClientNavbar';
+import type { Metadata } from 'next'
 
 type GenericText = Record<string, string>
 
@@ -28,6 +29,17 @@ type Params = {
 }
 
 const PER_PAGE = 9
+
+export async function generateMetadata({ params }: PageProps ): Promise<Metadata> {
+  const { lang } = await params
+  const tr = (allGeneric as Record<string, GenericText>)[lang] 
+    || (allGeneric as Record<string, GenericText>)['en']
+  return {
+    title: tr.title,
+    description: tr.about_encyclopedia_desc,
+    openGraph: { title: tr.title, description: tr.about_encyclopedia_desc }
+  }
+}
 
 export async function generateStaticParams() {
   const langs = Object.keys(allGeneric)

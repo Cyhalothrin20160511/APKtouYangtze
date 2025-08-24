@@ -1,5 +1,5 @@
 import { notFound, useParams } from 'next/navigation'
-import Head from 'next/head'
+import type { Metadata } from 'next'
 import allGeneric from '../../../locales/generic.json'
 import allArticles from '../../../locales/songjiang.json'
 import ClientNavbar from '@/components/ClientNavbar';
@@ -33,6 +33,18 @@ interface PageProps {
   searchParams?: Promise<Record<string, string | string[] | undefined>>
 }
 
+export async function generateMetadata({ params }: PageProps ): Promise<Metadata> {
+  const { lang, id } = await params
+  const entry = (allArticles as Record<string, ArticleEntry>)[id]
+  if (!entry) notFound()
+  const tr = entry.translations[lang] || entry.translations['en']
+  return {
+    title: tr.title,
+    description: tr.desc,
+    openGraph: { title: tr.title, description: tr.desc, images: entry.image_url ? [{ url: entry.image_url }] : undefined }
+  }
+}
+
 export default async function ContentPage({
   params,
   searchParams,
@@ -59,10 +71,6 @@ export default async function ContentPage({
 
   return (
     <>
-      <Head>
-        <title>{article.title}</title>
-      </Head>
-
       <ClientNavbar />
 
       <div className="position-relative overflow-hidden p-3 text-center">
