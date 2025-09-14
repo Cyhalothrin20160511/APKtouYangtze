@@ -10,15 +10,15 @@ type GenericText = Record<string, string>
 
 type ArticlesFooterProps = {
   page: number;
+  totalPages: number;
   hasNextPage: boolean;
 };
 
-const ArticlesFooter: React.FC<ArticlesFooterProps> = ({ page, hasNextPage }) => {
+const ArticlesFooter: React.FC<ArticlesFooterProps> = ({ page, totalPages, hasNextPage }) => {
   type Article = {
     language: string;
     title: string;
     desc: string;
-    shortDesc?: string;
     sourceUrl?: string;
     imageUrl?: string;
   };
@@ -57,8 +57,11 @@ const ArticlesFooter: React.FC<ArticlesFooterProps> = ({ page, hasNextPage }) =>
           </Link>
         )}
         <span> {genericText.page_1}</span>
+        <span> {page}</span>
+        <span>{genericText.page_2}</span>
+        <span>{genericText.total_pages_1}</span>
         <span> {page} </span>
-        <span>{genericText.page_2} </span>
+        <span>{genericText.total_pages_2} </span>
         {hasNextPage && (
           <Link href={`${page + 1}`} className="btn btn-sm btn-outline-secondary">
             {genericText.next_page}

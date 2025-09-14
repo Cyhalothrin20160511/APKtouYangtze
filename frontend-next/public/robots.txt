@@ -1,0 +1,10 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://apktouyangtze.schuletoushu.com
+
+# Sitemaps
+Sitemap: https://apktouyangtze.schuletoushu.com/sitemap.xml
+Sitemap: https://apktouyangtze.schuletoushu.com/server-sitemap.xml

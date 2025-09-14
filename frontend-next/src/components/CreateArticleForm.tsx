@@ -10,7 +10,6 @@ type Article = {
   language: string;
   title: string;
   desc: string;
-  shortDesc?: string;
   sourceUrl?: string;
   imageUrl?: string;
 };
@@ -29,7 +28,6 @@ const CreateArticleForm: React.FC<CreateArticleFormProps> = ({ onSubmit }) => {
   const [language, setLanguage] = useState<string>("");
   const [title, setTitle] = useState<string>("");
   const [desc, setDesc] = useState<string>("");
-  const [shortDesc, setShortDesc] = useState<string>("");
   const [sourceUrl, setSourceUrl] = useState<string>("");
   const [imageUrl, setImageUrl] = useState<string>("");
 
@@ -43,7 +41,6 @@ const CreateArticleForm: React.FC<CreateArticleFormProps> = ({ onSubmit }) => {
       language,
       title,
       desc,
-      shortDesc,
       sourceUrl,
       imageUrl,
     };
@@ -126,20 +123,6 @@ const CreateArticleForm: React.FC<CreateArticleFormProps> = ({ onSubmit }) => {
                     rows={6}
                     required
                     placeholder={genericText.desc_example}
-                  />
-                </div>
-
-                <div className="mb-3">
-                  <label htmlFor="shortDesc" className="form-label">
-                    {genericText.text_short_desc}
-                  </label>
-                  <textarea
-                    className="form-control"
-                    id="shortDesc"
-                    value={shortDesc}
-                    onChange={(e) => setShortDesc(e.target.value)}
-                    rows={2}
-                    placeholder={genericText.short_desc_example}
                   />
                 </div>
 

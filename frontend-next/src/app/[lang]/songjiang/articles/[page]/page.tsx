@@ -10,13 +10,13 @@ type GenericText = Record<string, string>
 
 type ArticleEntry = {
   image_url: string
-  translations: Record<string, { title: string; short_desc?: string }>
+  translations: Record<string, { title: string; desc?: string }>
 }
 
 type Article = {
   article_id: string
   title: string
-  short_desc?: string
+  desc?: string
   image_url: string
 }
 
@@ -40,12 +40,12 @@ export async function generateMetadata({ params }: PageProps ): Promise<Metadata
 
 export async function generateStaticParams() {
   const langs = Object.keys(allGeneric)
-  const totalPages = Math.ceil(
+  const totalPagess = Math.ceil(
     Object.keys(allArticles as Record<string, ArticleEntry>).length / PER_PAGE
   )
 
   return langs.flatMap(lang =>
-    Array.from({ length: totalPages }, (_, i) => ({
+    Array.from({ length: totalPagess }, (_, i) => ({
       lang,
       page: String(i + 1),
     }))
@@ -82,12 +82,13 @@ export default async function SongjiangArticlesPage({
     return {
       article_id: id,
       title: tr.title,
-      short_desc: tr.short_desc,
+      desc: tr.desc,
       image_url: entry.image_url,
     }
   })
 
-  const hasNextPage = start + PER_PAGE < ids.length
+  const totalPagesNum = ids.length
+  const hasNextPage = start + PER_PAGE < totalPagesNum
 
   return (
     <>
@@ -109,9 +110,9 @@ export default async function SongjiangArticlesPage({
                       <strong style={{ fontSize: '1.5em' }}>
                         {article.title}
                       </strong>
-                      {article.short_desc && (
+                      {article.desc && (
                         <p className="card-text m-1" style={{ textIndent: '2em' }}>
-                          {article.short_desc}
+                          {article.desc.substring(0,200)}
                         </p>
                       )}
                       <div className="d-flex justify-content-between align-items-center">
@@ -131,7 +132,7 @@ export default async function SongjiangArticlesPage({
         </div>
       </main>
 
-      <ArticlesFooter page={pageNum} hasNextPage={hasNextPage} />
+      <ArticlesFooter page={pageNum} totalPages={totalPagesNum} hasNextPage={hasNextPage} />
     </>
   )
 }

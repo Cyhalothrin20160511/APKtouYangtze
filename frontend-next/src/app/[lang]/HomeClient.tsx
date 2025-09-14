@@ -143,7 +143,7 @@ export default function HomeClient({
                   </Link>
                   <Link
                     href={`/${lang}/songjiang/articles/1`}
-                    className="btn btn-primary text-white m-3 flex-grow-1 fs-4 d-flex align-items-center justify-content-center"
+                    className="btn btn-success text-white m-3 flex-grow-1 fs-4 d-flex align-items-center justify-content-center"
                   >
                     {genericText.special_articles}
                   </Link>
