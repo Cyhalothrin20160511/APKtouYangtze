@@ -112,7 +112,7 @@ export default async function SongjiangArticlesPage({
                       </strong>
                       {article.desc && (
                         <p className="card-text m-1" style={{ textIndent: '2em' }}>
-                          {article.desc.substring(0,200)}
+                          {article.desc.substring(0,200)}...
                         </p>
                       )}
                       <div className="d-flex justify-content-between align-items-center">
