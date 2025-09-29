@@ -39,7 +39,7 @@ export default function HomeClient({
 
   useEffect(() => {
     let iv: ReturnType<typeof setInterval>
-    const isWestern = ['en', 'gr', 'ru'].includes(lang)
+    const isWestern = ['en', 'el', 'ru'].includes(lang)
     if (fade) {
       iv = setInterval(() => {
         setDisplayText(fullText.slice(0, index + 1))

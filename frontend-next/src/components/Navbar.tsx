@@ -26,7 +26,7 @@ const Navbar = () => {
   const logo = "/assets/images/icon.png";
   const supportedLocales = [
     { code: 'en', label: 'English' },
-    { code: 'gr', label: 'Ελληνικά' },
+    { code: 'el', label: 'Ελληνικά' },
     { code: 'sc', label: '简体中文' },
     { code: 'ja', label: '日本語' },
     { code: 'ru', label: 'Русский' },

@@ -1,4 +1,4 @@
 export const localeConfig = {
-  locales: ["en", "gr", "sc", "ja", "ru"],
+  locales: ["en", "el", "sc", "ja", "ru"],
   defaultLocale: "en",
 };

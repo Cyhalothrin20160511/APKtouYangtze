@@ -20,7 +20,7 @@
         "propose_changes_example": "Please provide details about the changes you would like to suggest. \n\nFor example: \"Please replace this term with ..., as it is a more standardized expression,\" or \"I suggest revising sentence Y in paragraph X to improve readability and fluency.\"",
         "propose_changes_success": "Your edit suggestion has been successfully submitted and will be reviewed by an administrator soon.",
         "submit_article": "Submit Article",
-        "language_code": "Language Code (Required, en: English, gr: Ελληνικά, sc: 简体中文, ja: 日本語, ru: Русский)",
+        "language_code": "Language Code (Required, en: English, el: Ελληνικά, sc: 简体中文, ja: 日本語, ru: Русский)",
         "language_example": "For example: en",
         "text_title": "Article Title (Required)",
         "title_example": "For example: Shanghai Proverbs",
@@ -42,7 +42,7 @@
         "special_articles": "Intangible Cultural Heritage of\nSongjiang District, Shanghai"
     },
     
-    "gr": {
+    "el": {
         "title": "Εγκυκλοπαίδεια ΑΠΚ του Δέλτα Γιανγκτζέ",
         "about_encyclopedia": "Σχετικά με αυτή την εγκυκλοπαίδεια",
         "about_encyclopedia_desc": "Η πολύγλωσση εγκυκλοπαίδεια της άυλης πολιτιστικής κληρονομιάς του Δέλτα Γιανγκτζέ στοχεύει στην ολοκληρωμένη παρουσίαση και διάδοση της πλούσιας και ποικιλόμορφης άυλης πολιτιστικής κληρονομιάς της περιοχής μέσω μιας πολυγλωσσικής πλατφόρμας. Η πλατφόρμα καλύπτει παραδοσιακές τέχνες, λαϊκές δραστηριότητες, όπερα και άλλες πολιτιστικές εκφράσεις, δεσμευόμενη να προστατεύει και να διαφυλάττει αυτούς τους πολύτιμους πολιτιστικούς θησαυρούς. Παρέχοντας περιεχόμενο σε κινεζικά, αγγλικά, ελληνικά, ιαπωνικά και άλλες γλώσσες, η Εγκυκλοπαίδεια Άυλης Πολιτιστικής Κληρονομιάς του Δέλτα του ποταμού Γιανγκτζέ εξυπηρετεί τόσο τους ντόπιους όσο και το διεθνές κοινό, προσφέροντας μια μοναδική ευκαιρία να εξερευνήσουν τον παραδοσιακό κινεζικό πολιτισμό. Ενισχύει τις πολιτιστικές ανταλλαγές, προάγει την κατανόηση και συμβάλλει στη βιώσιμη ανάπτυξη της άυλης πολιτιστικής κληρονομιάς.",
@@ -63,7 +63,7 @@
         "propose_changes_example": "Παρακαλώ περιγράψτε λεπτομερώς τις αλλαγές που θέλετε να προτείνετε. \n\nΓια παράδειγμα: \"Παρακαλώ αντικαταστήστε αυτόν τον όρο με ..., καθώς είναι πιο τυποποιημένη έκφραση\" ή \"Προτείνω την αναθεώρηση της πρότασης Y στην παράγραφο X για τη βελτίωση της αναγνωσιμότητας και της ροής του κειμένου.\"",
         "propose_changes_success": "Η πρότασή σας για αλλαγή υποβλήθηκε επιτυχώς και θα εξεταστεί σύντομα από έναν διαχειριστή.",
         "submit_article": "Υποβολή άρθρου",
-        "language_code": "Κωδικός γλώσσας (Απαιτείται, en: English, gr: Ελληνικά, sc: 简体中文, ja: 日本語, ru: Русский)",
+        "language_code": "Κωδικός γλώσσας (Απαιτείται, en: English, el: Ελληνικά, sc: 简体中文, ja: 日本語, ru: Русский)",
         "language_example": "Για παράδειγμα: en",
         "text_title": "Τίτλος άρθρου (Απαιτείται)",
         "title_example": "Για παράδειγμα: Shanghai Proverbs",
@@ -106,7 +106,7 @@
         "propose_changes_example": "请详细描述您希望修改的内容。\n\n例如：“请将此专有名词改为...，因为这是更规范的表达方式”，或“建议修改第X段第Y句，以提升可读性和流畅度”。",
         "propose_changes_success": "您的修改建议已成功提交，管理员将尽快审核处理。",
         "submit_article": "提交文章（必填）",
-        "language_code": "语言代码（必填，en: English, gr: Ελληνικά, sc: 简体中文, ja: 日本語, ru: Русский）",
+        "language_code": "语言代码（必填，en: English, el: Ελληνικά, sc: 简体中文, ja: 日本語, ru: Русский）",
         "language_example": "例如：en",
         "text_title": "文章标题（必填）",
         "title_example": "例如：Shanghai Proverbs",
@@ -148,7 +148,7 @@
         "propose_changes_example": "変更したい内容を詳しく説明してください。\n\n例えば、「この用語を…に置き換えてください。こちらの表現の方がより標準的です。」や「可読性と流暢さを向上させるため、第 X 段落の第 Y 文を修正することを提案します。」など。",
         "propose_changes_success": "あなたの修正提案が正常に送信され、管理者が速やかに審査します。",
         "submit_article": "記事を提出",
-        "language_code": "言語コード（必須，en: English, gr: Ελληνικά, sc: 简体中文, ja: 日本語, ru: Русский）",
+        "language_code": "言語コード（必須，en: English, el: Ελληνικά, sc: 简体中文, ja: 日本語, ru: Русский）",
         "language_example": "例えば：en",
         "text_title": "記事のタイトル（必須）",
         "title_example": "例えば：Shanghai Proverbs",
@@ -191,7 +191,7 @@
         "propose_changes_example": "Пожалуйста, подробно опишите изменения, которые вы хотите предложить. \n\nНапример: \"Замените этот термин на ..., так как это более стандартизированное выражение\", или \"Я предлагаю пересмотреть предложение Y в абзаце X для улучшения читаемости и плавности текста.\"",
         "propose_changes_success": "Ваше предложение об изменении успешно отправлено и будет вскоре рассмотрено администратором.",
         "submit_article": "Отправить статью",
-        "language_code": "Код языка (Обязательно, en: English, gr: Ελληνικά, sc: 简体中文, ja: 日本語, ru: Русский)",
+        "language_code": "Код языка (Обязательно, en: English, el: Ελληνικά, sc: 简体中文, ja: 日本語, ru: Русский)",
         "language_example": "Например: en",
         "text_title": "Заголовок статьи (Обязательно)",
         "title_example": "Например: Shanghai Proverbs",

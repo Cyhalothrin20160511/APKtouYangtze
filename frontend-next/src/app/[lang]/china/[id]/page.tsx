@@ -33,15 +33,29 @@ interface PageProps {
   searchParams?: Promise<Record<string, string | string[] | undefined>>
 }
 
+const siteUrl = "https://apktouyangtze.schuletoushu.com";
+const supportedLangs = ["en", "el", "sc", "ja", "ru"];
+
 export async function generateMetadata({ params }: PageProps ): Promise<Metadata> {
   const { lang, id } = await params
   const entry = (allArticles as Record<string, ArticleEntry>)[id]
   if (!entry) notFound()
   const tr = entry.translations[lang] || entry.translations['en']
+
+  const path = `/china/${id}`;
+  const languages: Record<string, string> = {};
+  supportedLangs.forEach((lng) => {
+    languages[lng] = `${siteUrl}/${lng}${path}`;
+  });
+
   return {
     title: tr.title,
     description: tr.desc,
-    openGraph: { title: tr.title, description: tr.desc, images: entry.image_url ? [{ url: entry.image_url }] : undefined }
+    openGraph: { title: tr.title, description: tr.desc, images: entry.image_url ? [{ url: entry.image_url }] : undefined },
+    alternates: {
+      canonical: `${siteUrl}/${lang}${path}`,
+      languages,
+    },
   }
 }
 
