@@ -1,20 +1,28 @@
-import React from 'react';
-import HreflangLinks from "@/components/HreflangLinks";
+import type { Metadata } from "next";
 
-interface LocaleLayoutProps {
-  children: React.ReactNode;
-  params: { lang: string };
-}
+const siteUrl = "https://apktouyangtze.schuletoushu.com";
 
-export default function LocaleLayout({ children, params }: LocaleLayoutProps) {
+export async function generateMetadata({ params }: { params: { lang: string } }): Promise<Metadata> {
   const { lang } = params;
 
+  return {
+    alternates: {
+      canonical: `${siteUrl}/${lang}`,
+      languages: {
+        en: `${siteUrl}/en`,
+        el: `${siteUrl}/gr`,
+        sc: `${siteUrl}/sc`,
+        ja: `${siteUrl}/ja`,
+        ru: `${siteUrl}/ru`,
+      },
+    },
+  };
+}
+
+export default function LocaleLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang={lang}>
-      <body>
-        <HreflangLinks currentLocale={lang} />
-        {children}
-      </body>
+    <html>
+      <body>{children}</body>
     </html>
   );
 }
