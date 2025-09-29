@@ -1,17 +1,20 @@
 import React from 'react';
+import HreflangLinks from "@/components/HreflangLinks";
 
-export default async function Layout({
-  children,
-  params,
-}: {
+interface LocaleLayoutProps {
   children: React.ReactNode;
-  params: Promise<{ lang: string }>;
-}) {
-  const { lang } = await params;
+  params: { lang: string };
+}
+
+export default function LocaleLayout({ children, params }: LocaleLayoutProps) {
+  const { lang } = params;
 
   return (
     <html lang={lang}>
-      <body>{children}</body>
+      <body>
+        <HreflangLinks currentLocale={lang} />
+        {children}
+      </body>
     </html>
   );
 }
